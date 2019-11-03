@@ -22,7 +22,12 @@ app.get('*', function (req, res) {
   const promises = []
   matchedRoutes.forEach(({ route }) => {
     const { loadData } = route;
-    loadData && promises.push(loadData(store))
+    if (loadData) {
+      const p = new Promise((resolve) => {
+        loadData(store).then(resolve).catch(resolve)
+      })
+      promises.push(p)
+    }
   });
   Promise.all(promises).then(() => {
     res.send(render(req, store, routes))
@@ -31,4 +36,6 @@ app.get('*', function (req, res) {
   })
 })
 
-var server = app.listen(port)
+var server = app.listen(port, () => {
+  console.log(`react ssr is running port ${port}`)
+})

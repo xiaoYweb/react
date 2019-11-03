@@ -27,11 +27,11 @@ class Home extends React.Component {
   }
 }
 
-Home.loadData = (store) => {
-  // action.getHomeList()
-  // console.log(action)
-  return store.dispatch(action.getHomeList())
-}
+// Home.loadData = (store) => {
+//   // action.getHomeList()
+//   // console.log(action)
+//   return store.dispatch(action.getHomeList())
+// }
 
 const mapStateToProps = ({ home }) => {
   return {
@@ -45,4 +45,12 @@ const mapDispathchToProps = dispatch => ({
   }
 })
 
-export default connect(state => state.home, action)(Home);
+const exportHome = connect(state => state.home, action)(Home);
+
+exportHome.loadData = loadData;
+
+function loadData(store) {
+  return store.dispatch(action.getHomeList())
+}
+
+export default exportHome;
