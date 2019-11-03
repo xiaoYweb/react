@@ -2,15 +2,23 @@ import React from 'react';
 import Header from '../../components/header';
 import { connect } from 'react-redux';
 import { action } from './store';
+// import './home.css';
+import style from './home.css';
 
 class Home extends React.Component {
+  componentWillMount() {
+    const {staticContext } = this.props;
+    if (staticContext) {
+      staticContext.css.push(style._getCss());
+    }
+  }
   render() {
     const { name, newsList } = this.props;
     // console.log(this.props)
     return (
       <div>
         {/* <Header/> */}
-        <div>this is home {name}!</div>
+        <div className={style.test}>this is home {name}!</div>
         <button onClick={() => alert(1)}>button</button>
         <ul>
           {

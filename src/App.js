@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Header from './components/header';
+import Header from './components/header/';
 import { renderRoutes } from 'react-router-config';
 
 class App extends Component {
   render() {
-    const { route } = this.props;
+    const { route, staticContext } = this.props;
     // console.log('props', this.props)
     return (
       <div>
-        <Header />
+        <Header staticContext={staticContext}/>
         {
           renderRoutes(route.routes)
         }

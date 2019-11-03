@@ -19,7 +19,8 @@ export const render = (req, store, routes, context) => {
       </StaticRouter>
     </Provider>
   );
-
+  const cssArr = context.css
+  const cssStr = cssArr.length > 0 ? cssArr.join('\n') : '';
   return (`
     <!DOCTYPE html>
     <html lang="en">
@@ -28,6 +29,7 @@ export const render = (req, store, routes, context) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Document</title>
+      <style>${cssStr}</style>
     </head>
     <body>
     <div id="root">${content}</div>

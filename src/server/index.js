@@ -30,7 +30,7 @@ app.get('*', function (req, res) {
     }
   });
   Promise.all(promises).then(() => {
-    const context = {};
+    const context = {css: []};
     const html = render(req, store, routes, context);
     if (context.action === 'REPLACE') {//重定向
       res.redirect(301, context.url)
