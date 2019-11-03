@@ -30,7 +30,15 @@ app.get('*', function (req, res) {
     }
   });
   Promise.all(promises).then(() => {
-    res.send(render(req, store, routes))
+    const context = {};
+    const html = render(req, store, routes, context);
+    if (context.action === 'REPLACE') {//重定向
+      res.redirect(301, context.url)
+      return;
+    }
+    console.log('context ready to send', context)
+    context.notFound && res.status(404);//路由未命中 则走NotFound组件 传递notFound true
+    res.send(html)
   }).catch(err => {
     console.log('Promise all err', err)
   })

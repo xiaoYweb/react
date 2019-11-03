@@ -3,10 +3,10 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-export const render = (req, store, routes) => {
+export const render = (req, store, routes, context) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.path} context={{}}>
+      <StaticRouter location={req.path} context={context}>
         <section>
           {routes.map((route) => (
             <Route {...route} />

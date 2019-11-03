@@ -2,6 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom';
 import Home from './containers/home';
 import Login from './containers/login';
+import NotFound from './containers/notFound';
 
 export default [
   {
@@ -24,6 +25,11 @@ export default [
     component: Login,
     exact: true,
     key: 'login'
+  },
+  {
+    path: '*',
+    component: NotFound,
+    key: '404'
   },
 ]
 
