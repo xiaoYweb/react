@@ -3,34 +3,33 @@ import { Route } from 'react-router-dom';
 import Home from './containers/home';
 import Login from './containers/login';
 import NotFound from './containers/notFound';
+import App from './App';
 
 export default [
   {
     path: '/',
-    component: Home,
-    exact: true,
-    loadData: Home.loadData,
-    key: 'home',
-    // routes:[
-    //   {
-    //     path: '/ttt',
-    //     component: Login,
-    //     exact: true,
-    //     key: 'ttt'
-    //   },
-    // ]
+    component: App,
+    routes: [
+      {
+        path: '/',
+        component: Home,
+        exact: true,
+        loadData: Home.loadData,
+        key: 'home'
+      },
+      {
+        path: '/login',
+        component: Login,
+        exact: true,
+        key: 'login'
+      },
+      {
+        component: NotFound,
+        key: '404'
+      },
+    ]
   },
-  {
-    path: '/login',
-    component: Login,
-    exact: true,
-    key: 'login'
-  },
-  {
-    path: '*',
-    component: NotFound,
-    key: '404'
-  },
+  
 ]
 
 // export default (

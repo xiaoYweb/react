@@ -9,7 +9,7 @@ class Home extends React.Component {
     // console.log(this.props)
     return (
       <div>
-        <Header></Header>
+        {/* <Header/> */}
         <div>this is home {name}!</div>
         <button onClick={() => alert(1)}>button</button>
         <ul>
